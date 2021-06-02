@@ -1,5 +1,7 @@
-FROM node:4-onbuild
+FROM jgwill/node
+#FROM node:4-onbuild
 
+RUN apt update
 ################
 #  App Deps    #
 ################
@@ -23,7 +25,7 @@ RUN npm install -g coffee-script
 # Copy over your apps sourcecode in this section
 COPY . /app/
 
-
+RUN mkdir -m 777 /var/log/dmesg
 #############
 #  Conclude #
 #############

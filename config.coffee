@@ -14,13 +14,13 @@ module.exports =
   # Server name which will be embedded in
   # RTSP and HTTP response headers.
   # Default server name is used when this value is null.
-  serverName: 'node-rtsp-rtmp-server'
+  serverName: 'orko-rtsp-rtmp-server'
 
   # Average frame rate of video (informative)
-  videoFrameRate: 30
+  videoFrameRate: 15
 
   # Video bitrate in Kbps (informative)
-  videoBitrateKbps: 2000
+  videoBitrateKbps: 1000
 
   # Audio bitrate in Kbps (informative)
   audioBitrateKbps: 40

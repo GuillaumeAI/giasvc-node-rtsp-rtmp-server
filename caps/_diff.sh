@@ -1,13 +1,19 @@
 duk(){ 
-	export A=$(du -ksh diff.png | tr "K" " " | awk '// {print $1}' | sed -e 's/,//g')
+	export D=$(du -b diff.png | tr "K" " " | awk '// {print $1}' | sed -e 's/,//g')
 }
 
 duk
-a=$A;echo $a
+a=$D;echo $a
 
 compare _previous.jpg _current.jpg  -compose src diff.png 
 duk
-b=$A
-echo "$(expr $a - $b)" 
-sleep 2
-feh diff.png
+b=$D; echo $b
+ISDIFF=$(expr $a - $b)
+if [ "$ISDIFF" != 0 ]; then #@state changed image is new
+		echo "---------CHANGED DETECTED in new Image---$a - $b = $ISDIFF----------"
+		echo "-- SOME ACTION LIKE Inferencing()"
+		echo "------------------------------------"
+		echo "$(date) :: Got diff $a - $b = $ISDIFF-" >> log.txt
+else 
+			echo "--------NO CHANGED DETECTED in new Image---$a - $b = $ISDIFF--------"
+fi
